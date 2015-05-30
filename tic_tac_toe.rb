@@ -16,16 +16,12 @@ class Player
         y = user_input[2].to_i
         @input = [x, y]
     end
-
-
 end
 
 class Board
     attr_accessor :layout
 
     def initialize
-        # @layout = Array.new(3, Array.new(3, "-"))
-        # p @layout.map(&:object_id)
         @layout = Array.new(3) { Array.new(3, "-") }
     end
 
@@ -85,12 +81,6 @@ class Game
             player.status = "winner"
             @status = "end"
         end
-
-        # board_diagonals = @layout.dup
-        # if (board_diagonals[0][0] == sign && board_diagonals[1][1] == sign && board_diagonals[2][2] == sign) || (board_diagonals[0][2] == sign && board_diagonals[1][1] == sign && board_diagonals[2][0] == sign)
-        #     player.status = "winner"
-        #     @status = "end"
-        # end
     end
 
 
