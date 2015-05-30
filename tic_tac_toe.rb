@@ -99,13 +99,9 @@ class Game
         input = player.get_user_input
         x = input[0]
         y = input[1]
-        raise 'You may only choose an empty slot' unless @layout[x][y] == "-"
         raise 'You have to be within board limits' if (x > 2 || y > 2)
-        # puts "x: #{x}   y: #{y}"
-        # puts "@layout[x][y] before => #{@layout[x][y]}"
+        raise 'You may only choose an empty slot' unless @layout[x][y] == "-"
         @layout[x][y] = player.sign
-        # puts "@layout[x][y] after => #{@layout[x][y]}"
-        # puts "layout: #{@layout}"
     end
 
     def play(player, game)
@@ -135,22 +131,21 @@ def play_tic_tac_toe
         game.play(player1, game)
         return puts "You are the winner!!" if player1.status == "winner"
 
+        if game.board.full?
+            game.status == "end"
+            return puts "It's a tie -.-\nTry again!"
+        end
+
         puts "\n\n"
         puts "PLAYER 2 playing"
         game.play(player2, game)
         return puts "You are the winner!!" if player2.status == "winner"
 
-        if game.board.full?
-            game.status == "end"
-            puts "It's a tie!! try again"
-        end
     end
     game.board.render_board
 end
 
 play_tic_tac_toe
-
-
 
 
 
